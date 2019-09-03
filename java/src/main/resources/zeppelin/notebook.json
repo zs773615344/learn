@@ -1,0 +1,32 @@
+{
+	"name": "SVM-TEST2",
+	"paragraphs": [
+		{
+			"text": "%dep\nz.load(\"/home/app/exam.jar\")"
+		},
+		{
+			"title": "读取数据",
+			"text": "val (trainData,validationData,testData)=svm.prepareData(sc,\"file:/home/app/spark-1.6.2-bin-hadoop2.6/data/mllib/sample_libsvm_data.txt\")"
+		},
+		{
+			"title": "训练评估模型",
+			"text": "val bestmodel=svm.evaluateAllParameter(trainData, validationData, Array(1,3,5,15,25), Array(10,50,100,200), Array(0.01,0.1,1))"
+		},
+		{
+			"title": "读取数据",
+			"text": "val (trainData,validationData,testData)=svm.prepareData(sc,\"file:/home/app/spark-1.6.2-bin-hadoop2.6/data/mllib/sample_libsvm_data.txt\")"
+		},
+		{
+			"title": "训练评估模型",
+			"text": "val bestmodel=svm.evaluateAllParameter(trainData, validationData, Array(1,3,5,15,25), Array(10,50,100,200), Array(0.01,0.1,1))"
+		},
+		{
+			"title": "测试最佳模型",
+			"text": "svm.testModel(bestmodel,testData)"
+		},
+		{
+			"title": "预测",
+			"text": "svm.predict(sc,\"file:/home/app/spark-1.6.2-bin-hadoop2.6/data/mllib/sample_libsvm_data.txt\",bestmodel)"
+		}
+	]
+}

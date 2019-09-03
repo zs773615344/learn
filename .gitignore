@@ -1,0 +1,6 @@
+*.class
+target
+Thumbs.db
+Desktop.ini
+.idea
+.DS_Store

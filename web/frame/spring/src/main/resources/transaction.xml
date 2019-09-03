@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:p="http://www.springframework.org/schema/p" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://192.168.1.231:3306/zhang?characterEncoding=utf-8"></property>
+<property name="username" value="root"></property>
+<property name="password" value="password"></property>
+</bean>
+<!-- 
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<property name="dataSource" ref="dataSource"></property>
+</bean>
+
+<bean id="studentJdbcTemplate" class="cn.zhang.spring.transaction.programme.StudentJdbcTemplate">
+<property name="dataSource" ref="dataSource"></property>
+<property name="transactionManager" ref="transactionManager"></property>
+</bean>
+ -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+<property name="dataSource" ref="dataSource"></property>
+</bean>
+<tx:advice id="txAdvice" transaction-manager="transactionManager">
+<tx:attributes>
+<tx:method name="create"/>
+</tx:attributes> 
+</tx:advice>
+<aop:config>
+<aop:pointcut expression="execution(* cn.zhang.spring.transaction.declare.StudentJdbcTemplate.create(..))" id="createOperation"/>
+<aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>
+</aop:config>
+<bean id="studentJdbcTemplate" class="cn.zhang.spring.transaction.declare.StudentJdbcTemplate">
+<property name="dataSource" ref="dataSource"></property>
+</bean>
+
+</beans>

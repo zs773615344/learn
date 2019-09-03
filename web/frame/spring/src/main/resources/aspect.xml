@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+
+ <!-- 
+<aop:config>
+<aop:aspect id="log" ref="logging">
+<aop:pointcut id="selectAll"
+ expression="execution(* cn.zhang.spring.aop.xml.*.*(..))"/>
+<aop:before method="beforeAdvice" pointcut-ref="selectAll"/>
+<aop:after method="afterAdvice" pointcut-ref="selectAll"/>
+<aop:after-returning method="afterReturnAdvice" pointcut-ref="selectAll" returning="retval"/>
+<aop:after-throwing method="afterThrowWingAdvie" pointcut-ref="selectAll" throwing="ex"/>
+</aop:aspect>
+</aop:config>
+
+<bean id="student" class="cn.zhang.spring.aop.xml.Student">
+<property name="name" value="zhangshuai"></property>
+<property name="age" value="25"></property>
+</bean>
+<bean id="teacher" class="cn.zhang.spring.aop.xml.Teacher">
+<property name="name" value="zhangshuai"></property>
+<property name="age" value="25"></property>
+</bean>
+<bean id="logging" class="cn.zhang.spring.aop.xml.Logging"></bean>
+  -->
+
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+<bean id="student" class="cn.zhang.spring.aop.annotation.Student">
+<property name="name" value="zhangshuai"></property>
+<property name="age" value="25"></property>
+</bean>
+<bean id="logging" class="cn.zhang.spring.aop.annotation.Logging"></bean>
+</beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>spring</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 全局变量，配置 webapplicationcontext的默认bean定义文件的路径-->
+  <context-param>
+	  <param-name>contextConfigLocation</param-name>
+	  <param-value>classpath:*.xml</param-value>
+  </context-param>
+
+  <!-- 先加载liestener，实现了servletContextListener接口，为web容器提供Ioc服务，创建xmlwebapplicationcontext 
+  默认读取bean定义文件/WEB-INF/applicationContext.xml
+  如配上述全局变量，则读取上述路径的配置文件-->
+	<!-- Bootstraps the root web application context before servlet initialization -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+<!-- 后加载前端控制器 默认读取/WEB-INF/[servlet-name]-servlet文件， -->
+  <servlet>
+    <servlet-name>springweb</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springweb</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>

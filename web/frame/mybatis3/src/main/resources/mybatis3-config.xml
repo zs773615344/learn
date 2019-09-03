@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- <properties resource="database.properties"></properties> -->
+	<properties resource="database.properties">
+		<property name="driver" value="com.mysql.jdbc.Driver" />
+	</properties>
+
+	<settings>
+		<!-- |mybatis内置日志工厂提供日志功能，按顺序选择以下工具 |SLF4J，Apache Commons Logging,Log4j2, 
+			|Log4j,jdk logging -->
+		<!-- 如果应用中包括其他日志环境，又想mybatis用其他的日志框架 ，可配置logimpl -->
+		<!-- -->
+		<setting name="logImpl" value="SLF4J" />
+
+		<setting name="cacheEnabled" value="true" />
+		<setting name="lazyLoadingEnabled" value="true" />
+		<setting name="multipleResultSetsEnabled" value="true" />
+		<setting name="useColumnLabel" value="true" />
+		<setting name="useGeneratedKeys" value="false" />
+		<setting name="autoMappingBehavior" value="PARTIAL" />
+		<setting name="defaultExecutorType" value="SIMPLE" />
+		<setting name="defaultStatementTimeout" value="25" />
+		<setting name="safeRowBoundsEnabled" value="false" />
+		<setting name="mapUnderscoreToCamelCase" value="false" />
+		<setting name="localCacheScope" value="SESSION" />
+		<setting name="jdbcTypeForNull" value="OTHER" />
+		<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString" />
+	</settings>
+
+	<!-- 配置别名 -->
+	<typeAliases>
+		<!-- typeAlias和package都使用的情况下，typeAlias必须放在前面，否则会报错 -->
+		<!-- 第一种直接配置 -->
+		<typeAlias alias="pro" type="cn.zhang.mybatis3.pojo.Project" />
+
+		<!-- 第二种配置包名和使用注解@alias共同作用实现，默认不使用注解的话，会使用该包名下的javaBean的类名忽略其任意字符大小写作为别名 -->
+		<package name="cn.zhang.mybatis3.pojo" />
+
+		<!-- @alias必须配合package使用，而且当使用@alias注释后，只能使用注释的别名 -->
+
+	</typeAliases>
+
+	<!-- 插件 -->
+	<!-- <plugins> <plugin interceptor="plugins.ExamplePlugin"> <property name="someProperty" 
+		value="100"/> </plugin> </plugins> -->
+
+	<!--配置环境 -->
+	<environments default="development">
+		<environment id="development">
+			<!-- | 事物管理器（transactionManager）tyep=[JDBC|MANAGED] | JDBC：直接使用了JDBC的提交和回滚设置，它依赖以从数据源得到的连接来管理事物作用域 
+				| 当更新数据的时候需要使用SqlSession.commit()提交或SqlSession.rollback()回滚 | MANAGED：这个配置几乎什么也没有做，也不提交或回滚连接，而是让容器来管理事物的整个生命周期 
+				| 不需要使用SqlSession.commit()提交事物，但默认情况下会关闭连接，然而一些容器并不希望这样， | 因此需要将closeConnection属性设置为false 
+				| |****当使用mybatis+spring，则没必要配置事物管理器，因为spring模块会使用自带的管理器覆盖以下配置 | -->
+
+			<transactionManager type="JDBC">
+			</transactionManager>
+
+			<!-- <transactionManager type="MANAGED"> <property name="closeConnection" 
+				value="false"/> </transactionManager> -->
+
+			<!-- | 数据源（datasource） type=[UNPOOLED|POOLED|JND1] | UNPOOLED：每次请求时打开和关闭连接 
+				| POOLED:使用资源池 | JNDI：使用第三方数据源 -->
+			<!-- <dataSource type="POOLED"> <property name="driver" value="${driver}"/> 
+				<property name="url" value="${url}"/> <property name="username" value="${username}"/> 
+				<property name="password" value="${password}"/> </dataSource> -->
+			<!-- <dataSource type="cn.zhang.mybatis3.dataSource.C3P0DataSourceFactory"> 
+				<property name="driverClass" value="#{driver}"/> <property name="jdbcUrl" 
+				value="#{url}"/> <property name="user" value="root"/> <property name="password" 
+				value="password"/> </dataSource> -->
+			<!-- -->
+			<dataSource type="cn.zhang.mybatis3.dataSource.DruidDataSourceFactory">
+				<!-- driverClassName可不用配置，自動根據url識別 ；url也可配置爲jdbcUrl -->
+				<property name="driverClassName" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!--映射器配置 -->
+	<mappers>
+		<!-- 指定映射为xml文件 -->
+		<mapper resource="ProjectMapper.xml" />
+
+		<!-- 通过注释实现映射 第一种直接指定某个类，第二种指定在名个包下面查找 -->
+		<mapper class="cn.zhang.mybatis3.dao.UserMapper" />
+		<package name="cn.zhang.mybatis3.dao.mapper" />
+
+	</mappers>
+</configuration>

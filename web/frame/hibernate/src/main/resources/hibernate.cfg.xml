@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Database connection settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://192.168.1.231:3306/zhang?characterEncoding=utf-8</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">password</property>
+		<!-- SQL dialect 注意坑-->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+       <!-- 自动提交  -->
+    <!-- <property name="autocommit">true</property> -->
+
+    	<!-- JDBC connection pool (use the built-in) -->
+		<property name="connection.pool_size">2</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">true</property>
+        <!-- 将SQL脚本进行格式化后再输出 -->  
+    <property name="hibernate.format_sql">true</property>
+      
+    	 <!-- 设定对数据库进行批量操作的批次大小 -->
+    <property name="jdbc.batch_size">50</property>
+		<!-- 设定 JDBC 的 Statement 读取数据的时候每次从数据库中取出的记录条数 -->
+    <property name="hibernate.jdbc.fetch_size">100</property>
+		  
+      
+		<!-- Drop and re-create the database schema on startup -->
+		<!-- 
+		  <property name="hbm2ddl.auto">create</property>
+		 --> 
+        
+    <!-- 緩存配置 -->
+		<!-- Disable the second-level cache -->
+<!--  
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+-->
+        <!--开启二级缓存 -->  
+<!--  
+    <property name="hibernate.cache.use_second_level_cache">true</property>  
+-->
+        <!-- 指定使用哪一个缓存框架 -->  
+<!--  
+    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>  
+-->
+        <!-- 开启查询缓存 -->  
+<!--  
+    <property name="hibernate.cache.use_query_cache">true</property>   
+-->  
+        <!-- 指定哪些类要加入二级缓存 -->  
+<!--  
+    <class-cache usage="read-write" class="cn.zhang.hibernate.xmlMapper.pojo.Employee"/>  
+-->
+	 <!-- Enable Hibernate's automatic session context management 配置管理 Session 的方式 -->  
+    <!-- <property name="current_session_context_class">thread</property> -->  
+		 
+  <!-- 配置c3p0連接池
+    <property name="c3p0.min_size">5</property> <!—在连接池中可用数据库连接的最小数目->
+    <property name="c3p0.max_size">30</property> <!-在连接池中所有数据库连接的最大数目->
+    <property name="c3p0.time_out">1800</property> <!—设定数据库连接的超时时间->
+    <property name="c3p0.max_statement">50</property> <!—可以被缓存的PreparedStatement的最大数目->
+   -->
+   <!-- 
+    <property name="hibernate.connection.provider_class">  
+            com.alibaba.druid.support.hibernate.DruidConnectionProvider  
+        </property>
+    -->
+		<mapping resource="Employee.hbm.xml" />
+    <mapping resource="Event.hbm.xml" />
+    <mapping class="cn.zhang.hibernate.annotationMapper.pojo.AnnoEmployee" />
+	</session-factory>
+
+</hibernate-configuration>

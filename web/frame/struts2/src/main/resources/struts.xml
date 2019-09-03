@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+	"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+	<constant name="struts.devMode" value="true" />
+	<!-- 
+	<constant name="struts.convention.package.locators" value="cn.zhang.struts2.action" />
+	<constant name="struts.convention.exclude.packages" value="cn.zhang.struts2" />
+	 -->
+	<package name="default" extends="struts-default" namespace="/">
+		<!-- namespace="/"可写可不写，但jsp页面form表单的namespace要与之对应，否则会报warn -->
+
+		<action name="xml-hello" class="cn.zhang.struts2.xmlAction.HelloWorldAction"
+			method="execute">
+			<result>/hello/success.jsp</result>
+		</action>
+
+		<action name="xml-login" class="cn.zhang.struts2.xmlAction.LoginAction"
+			method="execute">
+			<!-- <interceptor-ref name="params" /> -->
+			<!-- <interceptor-ref name="timer" /> -->
+			<!-- timer拦截器会阻拦参数验证validate() -->
+			<result>/login/success.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/login/error.jsp</result>
+		</action>
+
+		<action name="xml-userLogin" class="cn.zhang.struts2.xmlAction.UserLoginAction"
+			method="execute">
+			<result>/login/success.jsp</result>
+			<result name="none">/login/nouser.jsp</result>
+			<result name="input">/index.jsp</result>
+			<result name="error">/login/nopasswd.jsp</result>
+
+		</action>
+
+
+		<!--全局异常处理 -->
+		<!-- <global-results> <result name="securityerror">/securityerror.jsp</result> 
+			<result name="error">/error.jsp</result> </global-results> <global-exception-mappings> 
+			<exception-mapping exception="org.apache.struts.register.exceptions.SecurityBreachException" 
+			result="securityerror" /> <exception-mapping exception="java.lang.Exception" 
+			result="error" /> </global-exception-mappings> <interceptors> <interceptor-stack 
+			name="default"></interceptor-stack> </interceptors> -->
+
+	</package>
+
+</struts>
+
+

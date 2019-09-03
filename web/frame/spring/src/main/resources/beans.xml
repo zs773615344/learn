@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+<!-- 启动注释
+ -->
+<context:annotation-config/>
+
+<bean id="helloworld" class="cn.zhang.spring.helloSpring.HelloWorld" >
+    <property name="message" value="Hello World"/>
+</bean>
+
+<!--bean的作用域：singleton:单例  （默认）应用启动时立即加载
+                 prototype:任意对象实例 应用启动时不加载
+                 request:http请求 
+                 session:http会话 
+                 global-session:http全局会话
+<bean id="helloscope" class="cn.zhang.spring.bean.scope.HelloScope" >
+</bean>
+<bean id="helloscope" class="cn.zhang.spring.bean.scope.HelloScope" scope="singleton">
+</bean>
+ -->
+<bean id="helloscope" class="cn.zhang.spring.bean.scope.HelloScope" scope="prototype" >
+</bean>
+
+<bean id="hellolifecycle" class="cn.zhang.spring.bean.lifecycle.HelloLifeCycyle" init-method="init" destroy-method="destory" scope="prototype">
+<property name="message" value="obejct hellolifecycle"></property>
+</bean>
+
+<!-- Bean后置处理器，通过实现该方法来提供实例化逻辑，依赖解析逻辑
+<bean class="cn.zhang.spring.bean.beanPostProcessor.InitHelloLifeCycle"></bean>
+-->
+<!-- bean继承 -->
+<bean id="parent" class="cn.zhang.spring.bean.implement.Parent">
+<property name="message1" value="message1.parent"></property>
+<property name="message2" value="message2.parent"></property>
+</bean>
+
+<bean id="son" class="cn.zhang.spring.bean.implement.Son" parent="parent">
+<property name="message1" value="message1.son"></property>
+<property name="message3" value="message3.son"></property>
+</bean>
+
+<!--templet，mould:模板
+bean模板  -->
+<bean id="templet" abstract="true">
+<property name="message1" value="message1.templet"></property>
+<property name="message2" value="message2.templet"></property>
+</bean>
+<bean id="templetImpl" class="cn.zhang.spring.bean.implement.Son" parent="templet">
+<property name="message1" value="message1.son"></property>
+<property name="message3" value="message3.son"></property>
+</bean>
+
+<!--  基于构造函数的依赖注入-->
+<!-- ref指定参数名；index指定参数在构造器中的序号，从0开始；type指定参数类型，value指定参数的值 -->
+<!-- 
+<bean id="textEditor" class="cn.zhang.spring.DI.TextEditor" >
+<constructor-arg ref="spellCheck" ></constructor-arg>
+</bean>
+<bean id="spellCheck" class="cn.zhang.spring.DI.SpellChecker"></bean>
+ -->
+
+<!-- 基于设值函数的依赖注入 -->
+<!-- 
+<bean id="textEditor" class="cn.zhang.spring.DI.TextEditor" >
+<property name="spellCheck" ref="spellCheck"></property>
+</bean>
+<bean id="spellCheck" class="cn.zhang.spring.DI.SpellChecker"></bean>
+ -->
+ <!-- 注入内部bean -->
+ <!-- 
+<bean id="textEditor" class="cn.zhang.spring.DI.TextEditor">
+    <property name="spellCheck" >
+        <bean id="spellCheck" class="cn.zhang.spring.DI.SpellChecker"/>
+    </property>
+</bean>
+  -->
+<!-- 注入集合 -->
+<!--  -->
+<bean id="collectionDI" class="cn.zhang.spring.DI.CollectionDI">
+<property name="addressList">
+<list>
+<value>INDIA</value>
+<value>Pakistan</value>
+<value>USA</value>
+<value>USA</value>
+</list>
+</property>
+<property name="addressSet">
+<set>
+<value>INDIA</value>
+<value>Pakistan</value>
+<value>USA</value>
+<value>USA</value>
+</set>
+</property>
+<property name="addressMap">
+<map>
+<entry key="1" value="INDIA"></entry>
+<entry key="2" value="Pakistan"></entry>
+<entry key="3" value="USA"></entry>
+<entry key="4" value="USA"></entry>
+</map>
+</property>
+<property name="addressProp">
+<props>
+<prop key="one">INDIA</prop>
+<prop key="two">Pakistan</prop>
+<prop key="three">USA</prop>
+<prop key="four">USA</prop>
+</props>
+</property>
+</bean>
+
+<!-- 自动装配 -->
+<!-- byName -->
+<!--正常情况下 
+<bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor">
+<property name="spellCheck" ref="spellCheck"></property>
+<property name="name" value="Generic Text Editor"></property>
+</bean>
+<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+ -->
+ <!-- 
+ <bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor" autowire="byName">
+ <property name="name" value="Generic Text Editor"></property>
+ </bean>
+<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+  -->
+<!-- byType -->
+<!-- 
+ <bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor" autowire="byType">
+ <property name="name" value="Generic Text Editor"></property>
+ </bean>
+<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+ -->
+<!-- byConstructor -->
+<!--正常情况下 
+<bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor">
+<constructor-arg ref="spellCheck" ></constructor-arg>
+<constructor-arg value="Generic Text Editor"></constructor-arg>
+</bean>
+<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+ -->
+<!-- constructor
+<bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor" autowire="constructor">
+<constructor-arg value="Generic Text Editor"></constructor-arg>
+</bean>
+<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+ -->
+
+<!-- 基于注释的配置 --> 
+<!-- @request -->
+<!--
+<bean id="student" class="cn.zhang.spring.annovation.request.Student">
+<property name="name" value="zhangshuai"></property>
+<property name="age" value="25"></property>
+</bean>
+  -->
+
+<!-- @autowired -->
+<!-- setter -->
+<!-- 
+<bean id="textEditor" class="cn.zhang.spring.annovation.autowired.setter.TextEditor"></bean>
+<bean id="spellCheck" class="cn.zhang.spring.annovation.autowired.setter.SpellChecker"></bean>
+ -->
+<!-- property -->
+<!-- 
+<bean id="textEditor" class="cn.zhang.spring.annovation.autowired.property.TextEditor"></bean>
+<bean id="spellCheck" class="cn.zhang.spring.annovation.autowired.property.SpellChecker"></bean>
+ -->
+ <!-- constructor -->
+ <!-- 
+<bean id="textEditor" class="cn.zhang.spring.annovation.autowired.constructor.TextEditor"></bean>
+<bean id="spellCheck" class="cn.zhang.spring.annovation.autowired.constructor.SpellChecker"></bean>
+  -->
+<!-- autowired(request=false) -->
+<!-- 
+<bean id="student" class="cn.zhang.spring.annovation.autowired.request.Student">
+<property name="name" value="zhangshuai"></property>
+</bean>
+ --> 
+<!-- qualifier -->
+<!-- 若不用qualifier指明哪一个bean的话，会报错匹配失败
+<bean id="profile" class="cn.zhang.spring.annovation.qualifier.Profile"></bean>
+<bean id="student2" class="cn.zhang.spring.annovation.qualifier.Student">
+<property name="name" value="zhang"></property>
+<property name="age" value="26"></property>
+</bean>
+<bean id="student1" class="cn.zhang.spring.annovation.qualifier.Student">
+<property name="name" value="zhangshuai"></property>
+<property name="age" value="25"></property>
+</bean>
+ -->
+
+<!-- jsr250 -->
+<!-- 
+<bean id="jsr250" class="cn.zhang.spring.annovation.jsr250.HelloWorld"
+init-method="init" destroy-method="destory">
+<property name="message" value="hello world!"></property>
+</bean>
+ -->
+
+<!-- 事件处理 -->
+<!-- 
+<bean id="event" class="cn.zhang.spring.events.HelloWorld">
+<property name="message" value="Hello World!"></property>
+</bean>
+<bean id="cStartEventHandler" class="cn.zhang.spring.events.CStartEventHandler"></bean>
+<bean id="cStopEventHandler" class="cn.zhang.spring.events.CStopEventHandler"></bean>
+ -->
+<!-- 自定义事件 -->
+<!-- 
+ -->
+<bean id="customEventHandler" class="cn.zhang.spring.events.custom.CustomEventHandler"></bean>
+<bean id="customEventPublisher" class="cn.zhang.spring.events.custom.CustomEventPublisher"></bean>
+
+
+</beans>
+

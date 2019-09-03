@@ -1,0 +1,194 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>cn.zhang.test</groupId>
+	<artifactId>junit</artifactId>
+	<version>1.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>junit</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java-source>1.8</java-source>
+		<java-target>1.8</java-target>
+	</properties>
+
+	<!-- <organization> 项目的组织信息 <name></name> <url></url> </organization> <ciManagement></ciManagement> 
+		项目的持续集成系统信息 <contributors></contributors> 项目的贡献者 <inceptionYear>2017</inceptionYear> 
+		项目创始年份 <issueManagement></issueManagement> 项目的缺陷跟踪系统 <scm></scm> 项目的版本控制系统信息 
+		<mailingLists></mailingLists> 项目的邮件列表信息 <dependencyManagement></dependencyManagement> 
+		项目的依赖管理配置 // 既能让子模块继承父模块的依赖配置,又能保证子模块依赖使用的灵活性 // 不会引入实际的依赖,但能够约束dependencies的依赖使用 
+		// 配置后若使用其中依赖，不需要声明版本信息 <reporting></reporting> 项目的报告输出目录配置，项目的插件配置 <licenses></licenses> 
+		项目的许可证配置 -->
+	<developers>
+		<developer>
+			<id>1222150251</id>
+			<name>zhangshuai</name>
+			<email>15978370582@163.com</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:http://gitlab/zhangshuai/junit.git</connection>
+		<developerConnection>scm:git:http://gitlab/zhangshuai/junit.git</developerConnection>
+		<url>http://10.11.200.66/zhangshuai/junit/tree/master</url>
+	</scm>
+
+	<!-- 依赖的远程仓库
+	 <repositories> 
+	   <repository> 
+	       <id>central</id>
+	       <name>nexus group</name> 
+		     <url>http://192.168.1.245:8082/repository/maven-releases</url>
+		     <layout>default</layout>  maven仓库的布局 maven1为legacy 
+		     <releases> 
+		         <enabled>true</enabled>
+		         <updatePolicy>never</updatePolicy> 从maven仓库检查更新的频率 默认为daily 每天检查一次 never 从不检查 always 每次构建都检查 interval：X 每隔几分钟检查 
+	          	<checksumPolicy>ignore</checksumPolicy> 检查检验和文件的策略 默认：warn 输出警告 fail 遇见错误让构建失败 ignore 忽略校验和错误 
+	       </releases>
+	       <snapshots> 
+	           <enabled>false</enabled>
+	       </snapshots> 
+		当仓库需要认证信息时，需要在setting.xml中配置 <settings> …… <servers> <server> <id>nexus</id> 
+		<username>admin</username> <password>admin123<password> </server> </servers> 
+		…… </settings> </repository> </repositories> -->
+
+	<!-- 发布的远程仓库 -->
+	<distributionManagement>
+		<!-- 将jar发布的仓库地址 -->
+		<repository>
+			<id>releases</id>
+			<name>发行版的仓库</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>快照版的仓库</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<!-- 插件的远程仓库 -->
+	<!-- <pluginRepositories> <pluginRepository> <id></id> <name></name> <url></url> 
+		<releases> <enabled>true</enabled> </releases> <snapshots> <enabled>false</enabled> 
+		</snapshots> </pluginRepository> </pluginRepositories> -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.code.gson</groupId>
+				<artifactId>gson</artifactId>
+				<version>2.6</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.0.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>	<!-- 实际项目 -->
+			<artifactId>junit</artifactId> <!-- maven项目（模块） -->
+			<version>4.7</version> <!-- 版本 -->
+			<type>jar</type> <!-- 依赖类型 默认jar，可不必声明 -->
+			<scope>test</scope>
+			<!-- 依赖作用范围 默认为 compiler 编译依赖范围 test 测试依赖范围 provided 已提供依赖范围 编译测试classpath有效，运行时无效 
+				由运行环境提供 如servlet-api.jar runtime 运行时依赖范围 只在运行时需要 system:系统依赖范围，与provided范围一致， 
+				需使用<systemPath>,其中可引用环境变量 -->
+			<optional /> <!--可选依赖 true/fasle 依赖不会传递 -->
+			<!-- 排除传递性依赖 <exclusions> <exclusion> <groupId></groupId> <artifactId></artifactId> 
+				</exclusion> </exclusions> -->
+		</dependency>
+
+		<!-- 优化依赖 mvn dependency:list mvn dependency:tree mvn dependency:analyze -->
+	</dependencies>
+	<!-- maven生命周期： clean：1.pre-clean 2.clean 3.post-clean default:1.validate 
+		验证项目是否正确，合法化 2.initialize 3.generate-sources //生成所有需要包含在编译过程中的源代码 4.process-sources 
+		//处理源代码，比如过滤一些值 5.generate-resources 6.process-resources //复制并处理项目主资源文件到制定目录 
+		7.compile //编译项目的主源码 8.process-classes //后处理编译生成的文件，例如对字节码进行字节增强 9.generate-test-sources 
+		//生成测试源码 10.process-test-sources //处理测试源代码 11.generate-test-resources //生存测试需要的资源文件 
+		12.process-test-resources //处理项目测试资源文件 13.test-compile //编译项目的测试代码 14.process-test-classes 
+		//处理编译后生成的字节码 15.test //单元测试 16.prepare-package //执行打包前的必要操作 17 package //打包 
+		18.pre-integration-test //集成测试前的准备 19.integration-test //处理包并发布至集成测试的环境 20.post-integration-test//执行集成测试后需要的动作，如清除集成测试环境 
+		21.verify //执行所有检查，验证包时有效的，符合质量规范 22.install //将包安装到本地仓库 23.deploy //将包复制到远程仓库 
+		site：1.pre-site 2.site //生成项目站点文档 3.post-site 4.site-deploy //将生成的项目站点发布到服务器上 
+		内置绑定：clean：maven-clean-plugin:clean site：maven-site-plugin:site maven-site-plugin:deploy-site 
+		default： process-resources: maven-resources-plugin:resources compile: maven-compile-plugin:compile 
+		process-test-resources: maven-resources-plugin:testResources test-compile: 
+		maven-resources-plugin:testCompile test: maven-surefire-plugin:test package: 
+		maven-jar-plugin:jar install: maven-install-plugin:install deploy: maven-deploy-plugin:deploy -->
+	<build>
+		<!-- 插件管理，与dependencyManagement作用类似 <pluginManagement> <plugins> <plugin> 
+			</plugin> </plugins> </pluginManagement> -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.5.1</version>
+
+				<configuration>
+					<source>${java-source}</source>
+					<target>${java-target}</target>
+					<debug>true</debug>
+					<optimize>false</optimize>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-release-plugin</artifactId> 
+				<version>2.5.3</version> </plugin> -->
+			<!-- 将源码打包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.1</version>
+				<executions>
+					<execution>
+						<id>attach-source</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- 测试打包 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.0.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12.4</version>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+
+
+	</build>
+</project>

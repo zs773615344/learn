@@ -1,0 +1,40 @@
+{
+	"name": "mysql1",
+	"group": "jdbc",
+	"properties": {
+		"default.password": "password",
+		"zeppelin.jdbc.auth.type": "",
+		"common.max_count": "1000",
+		"zeppelin.jdbc.principal": "",
+		"default.user": "root",
+		"zeppelin.interpreter.localRepo": "/home/app/zeppelin-0.7.2-bin-all/local-repo/2CVCXCR3E",
+		"default.url": "jdbc:mysql://192.168.1.224:3306/test?useUnicode\u003dtrue\u0026amp;characterEncoding\u003dutf-8",
+		"default.driver": "com.mysql.jdbc.Driver",
+		"zeppelin.jdbc.keytab.location": "",
+		"zeppelin.jdbc.concurrent.use": "true",
+		"zeppelin.jdbc.concurrent.max_connection": "10",
+		"zeppelin.interpreter.output.limit": "102400"
+	},
+	"interpreterGroup": [
+		{
+			"name": "sql",
+			"class": "org.apache.zeppelin.jdbc.JDBCInterpreter",
+			"defaultInterpreter": false,
+			"editor": {
+				"language": "sql",
+				"editOnDblClick": false
+			}
+		}
+	],
+	"dependencies": [],
+	"option": {
+		"remote": true,
+		"port": -1,
+		"perNote": "shared",
+		"perUser": "shared",
+		"isExistingProcess": false,
+		"setPermission": false,
+		"users": [],
+		"isUserImpersonate": false
+	}
+}

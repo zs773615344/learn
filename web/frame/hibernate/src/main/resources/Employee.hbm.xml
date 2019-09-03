@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="cn.zhang.hibernate.xmlMapper.pojo">
+    <class name="Employee" table="employee">
+        <meta attribute="class-description">
+            this class contains the employee detail
+        </meta>
+        
+               
+              <!-- 併發策略：Transactional(ehcache不提供) ，read-write，Nonstrict-read-write，read-only--> 
+        <!-- 
+        <cache usage="read-write"/>
+         -->
+        
+        <!-- |native和increment都是自动增长
+             |native是根据使用的数据库自行判断主键增长方式
+             |increment是调用select man(id)取出最大值，以此为基础加一，在内存中生成主键，不适用高并发情况下 
+             -->
+        <id name="id" type="int" column="id">
+            <generator class="native"></generator>
+        </id>
+        <property name="firstName" column="first_name" type="string"/>
+        <property name="lastName" column="last_name" type="string"></property>
+        <property name="salary" column="salary" type="int"></property>
+    </class>
+
+</hibernate-mapping>
