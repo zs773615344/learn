@@ -1,8 +1,9 @@
-target
 Thumbs.db
 Desktop.ini
 .idea
 .DS_Store
+
+target
 
 # Compiled class file
 *.class
