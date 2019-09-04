@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="description" content="learn html" />
+		<meta name="keywords" content="HTML,CSS" />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="hello.css" />
+		<title>first html</title>
+	</head>
+	
+	<body >
+		<h1 align="center" color="red">learn html</h1>
+		<h2>标题与段落</h2>
+		<h3>level 3</h3>
+		<p>paragraph 1</p>
+		<p style="color:red;margin-left:20px">paragraph 2</p>
+		<h3 id="color" class="align">level 3</h3>
+		<p>paragraph 2</p>
+		<hr />
+		
+		<h2>图片</h2>
+		<img src="favicon.ico" align="left"/><br />
+		<img src="noImg" alt="图片不存在" align="center"/>
+		<hr />
+		
+		<h2>跳转</h2>
+		
+		<a href="http://192.168.1.231/easyml" >easyml</a><br />
+		<a name="label">指定要跳转的位置</a><br />
+		<a href="#label">跳转到当前页面指定要跳转的位置</a><br />
+		<a href="http://192.168.1.231/easyml"><img src="favicon.ico" alt="easyml"/>easyml</a>
+		<hr />
+		
+		<h2>div块</h2>
+		<a href="div.html">div.html</a>
+		<hr />
+		
+		<h2>表格</h2>
+		<a href="table.html">table.html</a>
+		<hr />
+		
+		<h2>列表</h2>
+		<a href="list.html">list.html</a>
+		<hr />
+		
+		<h2>特殊字符</h2>
+		<a href="character.html">character.html</a>
+		<hr />
+		
+		<h2>引入页面</h2>
+		<iframe src="div.html" width="100%" height="20" frameborder="1"></iframe>
+		<hr />
+		
+		<h2>learn simple js</h2>
+		<script type="text/javascript">
+			<!-- 
+			document.write("hello world! javascript write")
+			//-->
+		</script>
+		<hr />
+		
+		<h2>canvas</h2>
+		<!-- canval使用js在网页上绘制图像 -->
+		<canvas id="mycanvas" style="width:200px; height:100px" ></canvas>
+		<script type="text/javascript">
+			var c=document.getElementById("mycanvas");
+			var cxt=c.getContext("2d");
+			cxt.fillStyle="#FF0000";
+			cxt.fillRect(0,0,150,75);
+		</script>
+		<hr />
+		
+		<h2>svg</h2>
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="190">
+  			<polygon points="100,10 40,180 190,60 10,60 160,180"
+  			style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd;" />
+		</svg>
+		
+		<style type="text/css">
+			#div1, #div2
+			{float:left; width:198px; height:66px; margin:10px;padding:10px;border:1px solid #aaaaaa;}
+		</style>
+		<script type="text/javascript">
+			function allowDrop(ev)
+			{
+				ev.preventDefault();
+			}
+
+			function drag(ev)
+			{
+				ev.dataTransfer.setData("Text",ev.target.id);
+			}
+
+			function drop(ev)
+			{
+				ev.preventDefault();
+				var data=ev.dataTransfer.getData("Text");
+				ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+
+		<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+  			<img src="favicon.ico" draggable="true" ondragstart="drag(event)" id="drag1" />
+		</div>
+		<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		
+	</body>
+</html>
