@@ -5,14 +5,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class MultSocketServer {
 
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(8089);
+        @SuppressWarnings("resource")
+		ServerSocket serverSocket = new ServerSocket(8089);
 
         while (true) {
 //            Socket socket = serverSocket.accept();
@@ -81,12 +79,6 @@ public class MultSocketServer {
                 }
             }).start();
         }
-
-//        ExecutorService threadPool = Executors.newFixedThreadPool(3);
-//        while (true) {
-//            Socket socket = serverSocket.accept();
-//            threadPool.execute(new ProcessThread(socket));
-//        }
     }
 }
 class ProcessThread extends Thread {

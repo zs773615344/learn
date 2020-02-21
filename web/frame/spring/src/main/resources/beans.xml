@@ -8,7 +8,7 @@
  -->
 <context:annotation-config/>
 
-<bean id="helloworld" class="cn.zhang.spring.helloSpring.HelloWorld" >
+<bean id="helloworld" class="cn.zs.learn.web.frame.spring.helloSpring.HelloWorld" >
     <property name="message" value="Hello World"/>
 </bean>
 
@@ -17,28 +17,28 @@
                  request:http请求 
                  session:http会话 
                  global-session:http全局会话
-<bean id="helloscope" class="cn.zhang.spring.bean.scope.HelloScope" >
+<bean id="helloscope" class="cn.zs.learn.web.frame.spring.bean.scope.HelloScope" >
 </bean>
-<bean id="helloscope" class="cn.zhang.spring.bean.scope.HelloScope" scope="singleton">
+<bean id="helloscope" class="cn.zs.learn.web.frame.spring.bean.scope.HelloScope" scope="singleton">
 </bean>
  -->
-<bean id="helloscope" class="cn.zhang.spring.bean.scope.HelloScope" scope="prototype" >
+<bean id="helloscope" class="cn.zs.learn.web.frame.spring.bean.scope.HelloScope" scope="prototype" >
 </bean>
 
-<bean id="hellolifecycle" class="cn.zhang.spring.bean.lifecycle.HelloLifeCycyle" init-method="init" destroy-method="destory" scope="prototype">
+<bean id="hellolifecycle" class="cn.zs.learn.web.frame.spring.bean.lifecycle.HelloLifeCycyle" init-method="init" destroy-method="destory" scope="prototype">
 <property name="message" value="obejct hellolifecycle"></property>
 </bean>
 
 <!-- Bean后置处理器，通过实现该方法来提供实例化逻辑，依赖解析逻辑
-<bean class="cn.zhang.spring.bean.beanPostProcessor.InitHelloLifeCycle"></bean>
+<bean class="cn.zs.learn.web.frame.spring.bean.beanPostProcessor.InitHelloLifeCycle"></bean>
 -->
 <!-- bean继承 -->
-<bean id="parent" class="cn.zhang.spring.bean.implement.Parent">
+<bean id="parent" class="cn.zs.learn.web.frame.spring.bean.implement.Parent">
 <property name="message1" value="message1.parent"></property>
 <property name="message2" value="message2.parent"></property>
 </bean>
 
-<bean id="son" class="cn.zhang.spring.bean.implement.Son" parent="parent">
+<bean id="son" class="cn.zs.learn.web.frame.spring.bean.implement.Son" parent="parent">
 <property name="message1" value="message1.son"></property>
 <property name="message3" value="message3.son"></property>
 </bean>
@@ -49,7 +49,7 @@ bean模板  -->
 <property name="message1" value="message1.templet"></property>
 <property name="message2" value="message2.templet"></property>
 </bean>
-<bean id="templetImpl" class="cn.zhang.spring.bean.implement.Son" parent="templet">
+<bean id="templetImpl" class="cn.zs.learn.web.frame.spring.bean.implement.Son" parent="templet">
 <property name="message1" value="message1.son"></property>
 <property name="message3" value="message3.son"></property>
 </bean>
@@ -57,30 +57,30 @@ bean模板  -->
 <!--  基于构造函数的依赖注入-->
 <!-- ref指定参数名；index指定参数在构造器中的序号，从0开始；type指定参数类型，value指定参数的值 -->
 <!-- 
-<bean id="textEditor" class="cn.zhang.spring.DI.TextEditor" >
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.DI.TextEditor" >
 <constructor-arg ref="spellCheck" ></constructor-arg>
 </bean>
-<bean id="spellCheck" class="cn.zhang.spring.DI.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.DI.SpellChecker"></bean>
  -->
 
 <!-- 基于设值函数的依赖注入 -->
 <!-- 
-<bean id="textEditor" class="cn.zhang.spring.DI.TextEditor" >
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.DI.TextEditor" >
 <property name="spellCheck" ref="spellCheck"></property>
 </bean>
-<bean id="spellCheck" class="cn.zhang.spring.DI.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.DI.SpellChecker"></bean>
  -->
  <!-- 注入内部bean -->
  <!-- 
-<bean id="textEditor" class="cn.zhang.spring.DI.TextEditor">
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.DI.TextEditor">
     <property name="spellCheck" >
-        <bean id="spellCheck" class="cn.zhang.spring.DI.SpellChecker"/>
+        <bean id="spellCheck" class="cn.zs.learn.web.frame.spring.DI.SpellChecker"/>
     </property>
 </bean>
   -->
 <!-- 注入集合 -->
 <!--  -->
-<bean id="collectionDI" class="cn.zhang.spring.DI.CollectionDI">
+<bean id="collectionDI" class="cn.zs.learn.web.frame.spring.DI.CollectionDI">
 <property name="addressList">
 <list>
 <value>INDIA</value>
@@ -118,44 +118,44 @@ bean模板  -->
 <!-- 自动装配 -->
 <!-- byName -->
 <!--正常情况下 
-<bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor">
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.autowire.TextEditor">
 <property name="spellCheck" ref="spellCheck"></property>
 <property name="name" value="Generic Text Editor"></property>
 </bean>
-<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.autowire.SpellChecker"></bean>
  -->
  <!-- 
- <bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor" autowire="byName">
+ <bean id="textEditor" class="cn.zs.learn.web.frame.spring.autowire.TextEditor" autowire="byName">
  <property name="name" value="Generic Text Editor"></property>
  </bean>
-<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.autowire.SpellChecker"></bean>
   -->
 <!-- byType -->
 <!-- 
- <bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor" autowire="byType">
+ <bean id="textEditor" class="cn.zs.learn.web.frame.spring.autowire.TextEditor" autowire="byType">
  <property name="name" value="Generic Text Editor"></property>
  </bean>
-<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.autowire.SpellChecker"></bean>
  -->
 <!-- byConstructor -->
 <!--正常情况下 
-<bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor">
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.autowire.TextEditor">
 <constructor-arg ref="spellCheck" ></constructor-arg>
 <constructor-arg value="Generic Text Editor"></constructor-arg>
 </bean>
-<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.autowire.SpellChecker"></bean>
  -->
 <!-- constructor
-<bean id="textEditor" class="cn.zhang.spring.autowire.TextEditor" autowire="constructor">
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.autowire.TextEditor" autowire="constructor">
 <constructor-arg value="Generic Text Editor"></constructor-arg>
 </bean>
-<bean id="spellCheck" class="cn.zhang.spring.autowire.SpellChecker"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.autowire.SpellChecker"></bean>
  -->
 
 <!-- 基于注释的配置 --> 
 <!-- @request -->
 <!--
-<bean id="student" class="cn.zhang.spring.annovation.request.Student">
+<bean id="student" class="cn.zs.learn.web.frame.spring.annovation.request.Student">
 <property name="name" value="zhangshuai"></property>
 <property name="age" value="25"></property>
 </bean>
@@ -164,33 +164,33 @@ bean模板  -->
 <!-- @autowired -->
 <!-- setter -->
 <!-- 
-<bean id="textEditor" class="cn.zhang.spring.annovation.autowired.setter.TextEditor"></bean>
-<bean id="spellCheck" class="cn.zhang.spring.annovation.autowired.setter.SpellChecker"></bean>
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.annovation.autowired.setter.TextEditor"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.annovation.autowired.setter.SpellChecker"></bean>
  -->
 <!-- property -->
 <!-- 
-<bean id="textEditor" class="cn.zhang.spring.annovation.autowired.property.TextEditor"></bean>
-<bean id="spellCheck" class="cn.zhang.spring.annovation.autowired.property.SpellChecker"></bean>
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.annovation.autowired.property.TextEditor"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.annovation.autowired.property.SpellChecker"></bean>
  -->
  <!-- constructor -->
  <!-- 
-<bean id="textEditor" class="cn.zhang.spring.annovation.autowired.constructor.TextEditor"></bean>
-<bean id="spellCheck" class="cn.zhang.spring.annovation.autowired.constructor.SpellChecker"></bean>
+<bean id="textEditor" class="cn.zs.learn.web.frame.spring.annovation.autowired.constructor.TextEditor"></bean>
+<bean id="spellCheck" class="cn.zs.learn.web.frame.spring.annovation.autowired.constructor.SpellChecker"></bean>
   -->
 <!-- autowired(request=false) -->
 <!-- 
-<bean id="student" class="cn.zhang.spring.annovation.autowired.request.Student">
+<bean id="student" class="cn.zs.learn.web.frame.spring.annovation.autowired.request.Student">
 <property name="name" value="zhangshuai"></property>
 </bean>
  --> 
 <!-- qualifier -->
 <!-- 若不用qualifier指明哪一个bean的话，会报错匹配失败
-<bean id="profile" class="cn.zhang.spring.annovation.qualifier.Profile"></bean>
-<bean id="student2" class="cn.zhang.spring.annovation.qualifier.Student">
+<bean id="profile" class="cn.zs.learn.web.frame.spring.annovation.qualifier.Profile"></bean>
+<bean id="student2" class="cn.zs.learn.web.frame.spring.annovation.qualifier.Student">
 <property name="name" value="zhang"></property>
 <property name="age" value="26"></property>
 </bean>
-<bean id="student1" class="cn.zhang.spring.annovation.qualifier.Student">
+<bean id="student1" class="cn.zs.learn.web.frame.spring.annovation.qualifier.Student">
 <property name="name" value="zhangshuai"></property>
 <property name="age" value="25"></property>
 </bean>
@@ -198,7 +198,7 @@ bean模板  -->
 
 <!-- jsr250 -->
 <!-- 
-<bean id="jsr250" class="cn.zhang.spring.annovation.jsr250.HelloWorld"
+<bean id="jsr250" class="cn.zs.learn.web.frame.spring.annovation.jsr250.HelloWorld"
 init-method="init" destroy-method="destory">
 <property name="message" value="hello world!"></property>
 </bean>
@@ -206,17 +206,17 @@ init-method="init" destroy-method="destory">
 
 <!-- 事件处理 -->
 <!-- 
-<bean id="event" class="cn.zhang.spring.events.HelloWorld">
+<bean id="event" class="cn.zs.learn.web.frame.spring.events.HelloWorld">
 <property name="message" value="Hello World!"></property>
 </bean>
-<bean id="cStartEventHandler" class="cn.zhang.spring.events.CStartEventHandler"></bean>
-<bean id="cStopEventHandler" class="cn.zhang.spring.events.CStopEventHandler"></bean>
+<bean id="cStartEventHandler" class="cn.zs.learn.web.frame.spring.events.CStartEventHandler"></bean>
+<bean id="cStopEventHandler" class="cn.zs.learn.web.frame.spring.events.CStopEventHandler"></bean>
  -->
 <!-- 自定义事件 -->
 <!-- 
  -->
-<bean id="customEventHandler" class="cn.zhang.spring.events.custom.CustomEventHandler"></bean>
-<bean id="customEventPublisher" class="cn.zhang.spring.events.custom.CustomEventPublisher"></bean>
+<bean id="customEventHandler" class="cn.zs.learn.web.frame.spring.events.custom.CustomEventHandler"></bean>
+<bean id="customEventPublisher" class="cn.zs.learn.web.frame.spring.events.custom.CustomEventPublisher"></bean>
 
 
 </beans>

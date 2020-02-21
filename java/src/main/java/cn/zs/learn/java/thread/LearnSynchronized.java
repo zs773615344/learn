@@ -1,8 +1,6 @@
 package cn.zs.learn.java.thread;
 
 
-import java.lang.reflect.Method;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class LearnSynchronized {
     	/*
@@ -33,10 +31,10 @@ public class LearnSynchronized {
     	 */
         public static void main(String[] args) {
             SycClass sycClass = new SycClass();
-            SycClass sycClass1 = new SycClass();
-            SycClass sycClass2 = new SycClass();
-            SycClass sycClass3 = new SycClass();
-            SycClass sycClass4 = new SycClass();
+//            SycClass sycClass1 = new SycClass();
+//            SycClass sycClass2 = new SycClass();
+//            SycClass sycClass3 = new SycClass();
+//            SycClass sycClass4 = new SycClass();
 //        new Thread(new Runnable() {
 //            @Override
 //            public void run() {

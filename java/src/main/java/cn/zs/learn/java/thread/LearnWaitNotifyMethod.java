@@ -13,7 +13,7 @@ public class LearnWaitNotifyMethod {
    	*/
 
     public static void main(String[] args) throws InterruptedException {
-        Object o = new Object();
+//        Object o = new Object();
         System.out.println();
     	    Thread threadA = new Thread() {
                 public void run() {

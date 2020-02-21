@@ -1,14 +1,13 @@
 package cn.zs.learn.java.socket.pingpackage;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 
 public class PingSocket {
     public static void main(String[] args) throws IOException, InterruptedException {
-        Socket socket = new Socket("192.168.1.245",8088);
+		Socket socket = new Socket("192.168.1.245",8088);
         OutputStream outputStream = socket.getOutputStream();
         new Thread() {
             @Override
@@ -30,7 +29,7 @@ public class PingSocket {
             outputStream.write("############\n".getBytes(StandardCharsets.UTF_8));
             Thread.sleep(500);
         }
-
+        socket.close();
 
     }
 }

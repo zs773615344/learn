@@ -12,46 +12,11 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import com.github.dockerjava.api.DockerClient;
-import com.github.dockerjava.api.async.ResultCallback;
 import com.github.dockerjava.api.command.CreateContainerResponse;
-import com.github.dockerjava.api.command.CreateImageResponse;
-import com.github.dockerjava.api.command.ExecCreateCmdResponse;
-import com.github.dockerjava.api.command.InspectContainerResponse;
-import com.github.dockerjava.api.command.InspectImageResponse;
-import com.github.dockerjava.api.command.ListVolumesResponse;
-import com.github.dockerjava.api.command.TopContainerResponse;
-import com.github.dockerjava.api.model.ChangeLog;
-import com.github.dockerjava.api.model.Container;
-import com.github.dockerjava.api.model.ContainerHostConfig;
-import com.github.dockerjava.api.model.ContainerNetwork;
-import com.github.dockerjava.api.model.ContainerNetwork.Ipam;
-import com.github.dockerjava.api.model.ContainerNetworkSettings;
-import com.github.dockerjava.api.model.Frame;
-import com.github.dockerjava.api.model.Image;
-import com.github.dockerjava.api.model.Info;
-import com.github.dockerjava.api.model.Link;
-import com.github.dockerjava.api.model.Network;
-import com.github.dockerjava.api.model.Version;
 import com.github.dockerjava.core.DefaultDockerClientConfig;
 import com.github.dockerjava.core.DockerClientBuilder;
 import com.github.dockerjava.core.DockerClientConfig;
-import com.github.dockerjava.core.command.AttachContainerResultCallback;
-import com.github.dockerjava.core.command.BuildImageResultCallback;
-import com.github.dockerjava.core.command.EventsResultCallback;
-import com.github.dockerjava.core.command.ExecStartResultCallback;
-import com.github.dockerjava.core.command.PullImageResultCallback;
-import com.github.dockerjava.core.command.PushImageResultCallback;
-import com.github.dockerjava.core.command.WaitContainerResultCallback;
-import com.github.dockerjava.netty.NettyDockerCmdExecFactory;
-import com.google.gson.Gson;
-
+import com.github.dockerjava.api.DockerClient;
 
 public class DockerClientForJava {
 

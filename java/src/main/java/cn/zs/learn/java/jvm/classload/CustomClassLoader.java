@@ -8,7 +8,7 @@ class PathClassLoader extends ClassLoader {
     private String packageName;
 
     public PathClassLoader(String classPath) {
-        this.classPath = classPath;
+        this.setClassPath(classPath);
     }
 
     @Override
@@ -18,4 +18,12 @@ class PathClassLoader extends ClassLoader {
         }
         return null;
     }
+
+	public String getClassPath() {
+		return classPath;
+	}
+
+	public void setClassPath(String classPath) {
+		this.classPath = classPath;
+	}
 }

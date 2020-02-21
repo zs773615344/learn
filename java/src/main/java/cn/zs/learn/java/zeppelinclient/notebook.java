@@ -5,10 +5,8 @@ package cn.zs.learn.java.zeppelinclient;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.entity.FileEntity;
@@ -24,8 +22,8 @@ public class notebook {
 	 private static String InterpretersUri="http://192.168.1.224:8090/api/interpreter";
 
 	public static void main(String[] args) throws Exception  {
-		File notebook=new File("D:\\notebook.json");
-		File interpreter=new File("D:\\interpreter.json");
+//		File notebook=new File("D:\\notebook.json");
+//		File interpreter=new File("D:\\interpreter.json");
 //		createNote(notebook);
 //		createNewInterConf(interpreter);
 		

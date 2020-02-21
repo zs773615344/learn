@@ -60,7 +60,7 @@ public class LearnThreadPool {
 	    	 * 
 	    	*/
 	    	ExecutorService cachedThreadPool = Executors.newCachedThreadPool();
-	    	ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
+//	    	ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
 //	    	ExecutorService singleThreadExecutor = Executors.newSingleThreadExecutor();
 //	    	ScheduledExecutorService scheduledThreadPool = Executors.newScheduledThreadPool(5);
 //	    	ScheduledExecutorService singleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor();

@@ -4,7 +4,7 @@ public class LearnThreadLocalVariable {
 
     private static ThreadLocal<Integer> integerThreadLocal = new ThreadLocal<Integer>();
 
-    private static InheritableThreadLocal inheritableThreadLocal;
+    static InheritableThreadLocal<Integer> inheritableThreadLocal;
     /**
      * ThreadLocal<>线程本地存储变量
      * 每个线程本地都会存储一个变量副本.

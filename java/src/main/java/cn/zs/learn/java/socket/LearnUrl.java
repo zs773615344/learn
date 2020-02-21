@@ -80,18 +80,18 @@ public class LearnUrl {
 	    	System.out.println(connection.getDate());
 	    	InputStream inputStream = connection.getInputStream();
 	    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-//	    	String read;
-//	    	while((read = reader.readLine()) != null) {
-//	    	    System.out.println(read);
-//	    	}
+	    	String read;
+	    	while((read = reader.readLine()) != null) {
+	    	    System.out.println(read);
+	    	}
 	    	BufferedReader reader2 = new BufferedReader(new InputStreamReader(url.openStream()));
 	    	String read2;
-	    	while((read2 = reader.readLine()) != null) {
+	    	while((read2 = reader2.readLine()) != null) {
 	    	    System.out.println(read2);
 	    	}
 	    	URI uri = url.toURI();
-//	    	System.out.println(uri.getScheme());
-//	    	System.out.println(uri);
+	    	System.out.println(uri.getScheme());
+	    	System.out.println(uri);
 	    	
 	}
 }

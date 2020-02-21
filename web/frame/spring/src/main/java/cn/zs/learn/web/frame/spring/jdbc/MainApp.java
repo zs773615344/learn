@@ -29,6 +29,7 @@ public class MainApp {
         System.out.println("***********************");
         studentTemplate.delete(1);
         System.out.println("***********************");
+        ((ClassPathXmlApplicationContext)context).close();
     }
     
 }

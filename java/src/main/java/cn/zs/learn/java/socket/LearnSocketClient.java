@@ -45,7 +45,7 @@ public class LearnSocketClient {
 		PingInputStream inputStream = new PingInputStream(client.getInputStream());
 		int read;
 		while((read = inputStream.read()) != -1) {
-//		    System.out.print((char)read);
+		    System.out.print((char)read);
 		}
 		
 		outputStream.flush();
@@ -101,6 +101,14 @@ public class LearnSocketClient {
 	public static void sendPing(long lastTime) throws IOException {
     	if (System.currentTimeMillis() - lastTime > 5000)
     	client.getOutputStream().write("心跳".getBytes(StandardCharsets.UTF_8));
+	}
+
+	public static InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public static void setInputStream(InputStream inputStream) {
+		LearnSocketClient.inputStream = inputStream;
 	}
 
 }

@@ -12,6 +12,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+@SuppressWarnings("deprecation")
 public class request {
 	
 	private static HttpClient httpclient=new DefaultHttpClient();

@@ -1,6 +1,6 @@
 package cn.zs.learn.java.extendsimplement;
 
-public abstract class parent {
+public abstract class AnothorParent {
     String field1 ;
 	private String field2 = "xixi";
 	

@@ -16,7 +16,7 @@ public class VolatileTest {
         race2.getAndIncrement();
     }
 
-    private static final int THREAD_COUNT = 20;
+//    private static final int THREAD_COUNT = 20;
 
     public static void main(String[] args) {
 //        Thread[] threads = new Thread[THREAD_COUNT];
