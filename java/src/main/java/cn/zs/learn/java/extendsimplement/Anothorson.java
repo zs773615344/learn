@@ -2,7 +2,7 @@ package cn.zs.learn.java.extendsimplement;
 
 import java.lang.reflect.Field;
 
-public class son extends parent {
+public class Anothorson extends AnothorParent {
 	String field1 = "haha";
 	public static void main(String[] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, ClassNotFoundException {
 //		new son().print();

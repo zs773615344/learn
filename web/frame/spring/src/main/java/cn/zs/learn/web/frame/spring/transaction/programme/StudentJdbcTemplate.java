@@ -9,7 +9,10 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 public class StudentJdbcTemplate implements StudentDao {
    private DataSource dataSource;
-   private JdbcTemplate jdbcTemplateObject;
+   public DataSource getDataSource() {
+	return dataSource;
+}
+private JdbcTemplate jdbcTemplateObject;
    private PlatformTransactionManager transactionManager;
    public void setDataSource(DataSource dataSource) {
       this.dataSource = dataSource;

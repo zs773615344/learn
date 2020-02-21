@@ -5,7 +5,12 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class RMIServicesImpl extends UnicastRemoteObject implements RMIServices {
 
-    protected RMIServicesImpl() throws RemoteException {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected RMIServicesImpl() throws RemoteException {
     }
 
     @Override

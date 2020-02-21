@@ -27,7 +27,7 @@ public class LearnNIO {
         ssc.register(selector, SelectionKey.OP_ACCEPT);
         while (true) {
             Set<SelectionKey> selectedKeys = selector.selectedKeys();
-            Iterator it = selectedKeys.iterator();
+            Iterator<SelectionKey> it = selectedKeys.iterator();
             while (it.hasNext()) {
                 SelectionKey key = (SelectionKey) it.next();
                 it.remove();

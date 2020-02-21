@@ -1,9 +1,7 @@
 package cn.zs.learn.java.nio.echo;
 
 import java.io.IOException;
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.SocketChannel;
 

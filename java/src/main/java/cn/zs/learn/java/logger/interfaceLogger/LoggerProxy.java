@@ -8,7 +8,7 @@ public class LoggerProxy {
     private LoggerInterface loggerInterface;
     
     public LoggerProxy(LoggerInterface loggerInterface) {
-        this.loggerInterface = loggerInterface;
+        this.setLoggerInterface(loggerInterface);
     }
     
     public void doAuditing(String name) {
@@ -16,4 +16,12 @@ public class LoggerProxy {
         System.out.println("hahahhahah");
         logger.log(Level.INFO, name+"审核数据结束。。。。。。。");
     }
+
+	public LoggerInterface getLoggerInterface() {
+		return loggerInterface;
+	}
+
+	public void setLoggerInterface(LoggerInterface loggerInterface) {
+		this.loggerInterface = loggerInterface;
+	}
 }

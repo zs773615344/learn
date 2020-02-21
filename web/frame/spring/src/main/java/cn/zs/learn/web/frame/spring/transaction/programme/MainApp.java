@@ -7,10 +7,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class MainApp {
     public static void main(String[] args) {
-        ApplicationContext context = 
+        @SuppressWarnings("resource")
+		ApplicationContext context = 
                new ClassPathXmlApplicationContext("transaction.xml");
-        StudentJdbcTemplate studentJDBCTemplate = 
-        (StudentJdbcTemplate)context.getBean("studentJdbcTemplate");     
+        StudentJdbcTemplate studentJDBCTemplate = (StudentJdbcTemplate)context.getBean("studentJdbcTemplate");     
         System.out.println("------Records creation--------" );
         studentJDBCTemplate.create("Zara", 11, 99, 2010);
         studentJDBCTemplate.create("Nuha", 20, 97, 2010);
@@ -24,5 +24,6 @@ public class MainApp {
            System.out.print(", Year : " + record.getYear());
            System.out.println(", Age : " + record.getAge());
         }
+        
      }
 }
