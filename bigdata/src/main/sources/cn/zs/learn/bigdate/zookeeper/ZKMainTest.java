@@ -2,7 +2,6 @@ package cn.zs.learn.bigdate.zookeeper;
 
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.ZooDefs.Ids;
-import org.apache.zookeeper.data.Stat;
 
 import java.nio.charset.StandardCharsets;
 

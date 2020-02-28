@@ -48,6 +48,9 @@
     		<url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
     	</pluginRepository>
     </pluginRepositories>
+=======
+    
+>>>>>>> branch 'master' of https://github.com/zs773615344/learn.git
     
     <dependencies>
         <dependency>

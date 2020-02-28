@@ -11,7 +11,7 @@ object XmlProcess {
 //    
 //    println(StringUtils.isNotBlank("ss"))
     
-    val elme = <dependency>aa<groupId>junit</groupId><artifactId>junit</artifactId><version>3.8.1</version><scope>test</scope></dependency>
+    val elme = <dependency><groupId>junit</groupId><artifactId>junit</artifactId><version>3.8.1</version><scope>test</scope></dependency>
 //    println(elme.toString())
 //    val attr = elme.attributes
 //    println(attr)
